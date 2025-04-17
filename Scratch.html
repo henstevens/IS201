@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/scratch.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Page</title>
+    <!-- Assuming your existing stylesheet and nav are included in a layout -->
+</head>
+<body>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div id="swing-tips" style="background-color: #e6f2ff; padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h2 class="post-title">3 Key Steps to a Great Golf Swing</h2>
+                    <ol>
+                        <li>Setup & Stance
+                            <ul>
+                                <li>Keep feet shoulder-width apart</li>
+                                <li>Bend knees slightly and keep spine straight</li>
+                                <li>Grip the club lightly but firmly</li>
+                            </ul>
+                        </li>
+                        <li>Backswing
+                            <ul>
+                                <li>Rotate shoulders fully while keeping arms extended</li>
+                                <li>Shift weight to back foot</li>
+                                <li>Maintain a slow and controlled pace</li>
+                            </ul>
+                        </li>
+                        <li>Downswing & Follow-through
+                            <ul>
+                                <li>Lead with hips and transfer weight to front foot</li>
+                                <li>Keep eyes on the ball through impact</li>
+                                <li>Allow your body to rotate naturally into follow-through</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- Golf gear images -->
+                <div class="post-preview" style="margin-bottom: 2rem;">
+                    <h2 class="post-title">Golf Gear Essentials</h2>
+                    <p>Check out some must-have equipment for a great day on the course:</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                        <img src="../assets/img/clubs in bag.webp" 
+                             alt="Golf Clubs in Bag" 
+                             style="max-width: 45%; height: auto; border-radius: 8px;" />
+                             
+                        <img src="../assets/img/golf balls.jpg" 
+                             alt="Golf Balls on Tee" 
+                             style="max-width: 45%; height: auto; border-radius: 8px;" />
+                    </div>
+                </div>
+                <!-- Golf Topic Header -->
+                <div class="post-preview">
+                    <h1 class="post-title">The World of Golf</h1>
+                    <p>Explore golf insights, skills, and stats through video and interactive data.</p>
+                </div>
+                <hr class="my-4" />
+
+                <!-- Embedded YouTube Video -->
+                <div class="post-preview">
+                    <h2 class="post-title">Golf Swing Tips Video</h2>
+                    <div class="ratio ratio-16x9">
+                        <iframe 
+                            src="https://www.youtube.com/embed/5F6dxvUmhIQ" 
+                            title="Golf Swing Tips" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <hr class="my-4" />
+
+                <!-- Embedded Tableau Graph -->
+                <div class="post-preview">
+                    <h2 class="post-title">Golf Data Dashboard</h2>
+                    <div class="tableauPlaceholder" id="viz1685549640870" style="position: relative; width: 100%; padding-bottom: 80%; height: 0;">
+                        <noscript>
+                            <a href="https://public.tableau.com/views/GolfDashboard_15977034310110/Dashboard1">
+                                View Golf Dashboard on Tableau
+                            </a>
+                        </noscript>
+                        <object class="tableauViz" style="display: none;">
+                            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                            <param name="embed_code_version" value="3" />
+                            <param name="site_root" value="" />
+                            <param name="name" value="GolfDashboard_15977034310110/Dashboard1" />
+                            <param name="tabs" value="no" />
+                            <param name="toolbar" value="yes" />
+                            <param name="static_image" value="https://public.tableau.com/static/images/Go/GolfDashboard_15977034310110/Dashboard1/1.png" />
+                            <param name="animate_transition" value="yes" />
+                            <param name="display_static_image" value="yes" />
+                            <param name="display_spinner" value="yes" />
+                            <param name="display_overlay" value="yes" />
+                            <param name="display_count" value="yes" />
+                            <param name="language" value="en-US" />
+                        </object>
+                    </div>
+                    <script type="text/javascript">
+                        var divElement = document.getElementById("viz1685549640870");
+                        var vizElement = divElement.getElementsByTagName("object")[0];
+                        vizElement.style.width = "100%";
+                        vizElement.style.height = "100%";
+                        var scriptElement = document.createElement("script");
+                        scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+                        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                    </script>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <a href="index.html">Resume page</a>
+    <br>
+    <br>
+    <a href="webapp.html">Tic Tac Toe</a>
+</body>
+</html>

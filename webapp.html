@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+    }
+
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      background-color: white;
+      border: 2px solid #333;
+      cursor: pointer;
+    }
+
+    .cell:hover {
+      background-color: #e0e0e0;
+    }
+
+    .disabled {
+      pointer-events: none;
+    }
+
+    .log {
+      margin-top: 20px;
+      width: 300px;
+      text-align: left;
+      font-size: 14px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .winner {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tic Tac Toe</h1>
+  <div class="board" id="board"></div>
+  <div class="winner" id="winner"></div>
+  <button onclick="resetGame()">Restart Game</button>
+  <div class="log" id="log">
+    <strong>Game Log:</strong>
+    <ul id="logList"></ul>
+  </div>
+
+  <script>
+    const board = document.getElementById('board');
+    const winnerText = document.getElementById('winner');
+    const logList = document.getElementById('logList');
+
+    let cells = Array(9).fill(null);
+    let playerMoves = [];
+    let computerMoves = [];
+    let gameOver = false;
+
+    const winningCombos = [
+      [0,1,2], [3,4,5], [6,7,8],
+      [0,3,6], [1,4,7], [2,5,8],
+      [0,4,8], [2,4,6]
+    ];
+
+    function renderBoard() {
+      board.innerHTML = '';
+      for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.dataset.index = i;
+        cell.textContent = cells[i] || '';
+        cell.addEventListener('click', handlePlayerMove);
+        if (gameOver || cells[i]) {
+          cell.classList.add('disabled');
+        }
+        board.appendChild(cell);
+      }
+    }
+
+    function handlePlayerMove(e) {
+      const index = parseInt(e.target.dataset.index);
+      if (cells[index] || gameOver) return;
+
+      cells[index] = 'X';
+      playerMoves.push(index);
+      logAction(`You chose cell ${index}`);
+      renderBoard();
+
+      if (checkWinner('X')) {
+        gameOver = true;
+        winnerText.textContent = "You win!";
+        logAction("You win!");
+        return;
+      }
+
+      if (cells.every(cell => cell)) {
+        gameOver = true;
+        winnerText.textContent = "It's a draw!";
+        logAction("It's a draw!");
+        return;
+      }
+
+      setTimeout(computerMove, 500); // Delay for realism
+    }
+
+    function computerMove() {
+      const emptyIndices = cells.map((v, i) => v === null ? i : null).filter(i => i !== null);
+      const randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+
+      if (randomIndex === undefined) return;
+
+      cells[randomIndex] = 'O';
+      computerMoves.push(randomIndex);
+      logAction(`Computer chose cell ${randomIndex}`);
+      renderBoard();
+
+      if (checkWinner('O')) {
+        gameOver = true;
+        winnerText.textContent = "Computer wins!";
+        logAction("Computer wins!");
+      } else if (cells.every(cell => cell)) {
+        gameOver = true;
+        winnerText.textContent = "It's a draw!";
+        logAction("It's a draw!");
+      }
+    }
+
+    function checkWinner(symbol) {
+      return winningCombos.some(combo => combo.every(i => cells[i] === symbol));
+    }
+
+    function logAction(message) {
+      const li = document.createElement('li');
+      li.textContent = message;
+      logList.appendChild(li);
+    }
+
+    function resetGame() {
+      cells = Array(9).fill(null);
+      playerMoves = [];
+      computerMoves = [];
+      gameOver = false;
+      winnerText.textContent = '';
+      logList.innerHTML = '';
+      renderBoard();
+    }
+
+    renderBoard();
+  </script>
+</body>
+</html>
